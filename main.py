@@ -18,12 +18,12 @@ client = commands.Bot(command_prefix=bot_config["bot_prefix"])
 
 @client.event
 async def on_ready():
-	print("Bot is ready!")
+	print("[ID] Ready!")
 
 
 @client.command(pass_context=True)
 async def ping(ctx):
-	await ctx.send("> `Pong! " + str(round(client.latency * 1000)) + "ms`")
+	await ctx.send("> `Pong, " + str(round(client.latency * 1000)) + "ms`")
 
 
 @client.command(pass_context=True)
@@ -56,16 +56,16 @@ async def const(ctx, *args):
 	except:
 			script_to_obfuscate = "none"
 	if script_to_obfuscate == "none":
-		await ctx.send("> `Error lmao`")
+		await ctx.send("> `Please send a script file to continue!`")
 	else:
-		if whitelist_to != "The file weren't able to be found !" and whitelist_to != script_to_obfuscate:
+		if whitelist_to != "The file wasn't able to be found !" and whitelist_to != script_to_obfuscate:
 			d1 = str(today.strftime("%m") + "_" + today.strftime("%d") + "_" + today.strftime("%y"))
 			f = io.StringIO(whitelist_to)
-			await ctx.channel.send(content="> `Constant dumping completed!`",
+			await ctx.channel.send(content="> `Constant Dump Completed!`",
 			file=discord.File(f, d1 + "_constants" + ".txt"))
 		else:
-			embed = discord.Embed(title=bot_config["bot_name"], description="", color=0xFF0000)
-			embed.add_field(name="Error", value="`Syntax Error.`", inline=False)
+			embed = discord.Embed(title=bot_config["bot_name"], description="IronDumper: ERROR", color=0xFF0000)
+			embed.add_field(name="Uh oh!", value="`A Syntax Error has occured!`", inline=False)
 			embed.set_footer(text=bot_config["bot_name"] + " | " + str(
 				today.strftime("%m") + "/" + today.strftime("%d") + "/" + today.strftime("%y")))
 			await ctx.send(embed=embed)
